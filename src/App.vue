@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ControlPanel/>
+    <OutputScreen/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ControlPanel from '@/components/ControlPanel';
+import OutputScreen from '@/components/OutputScreen';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ControlPanel,
+    OutputScreen
+  },
+  sockets: {
+    connect: function () {
+      console.log("Socket connected.")
+    },
+    getCode: function (fn) {
+      const code = prompt("Enter Steam Guard code");
+      fn(code);
+    }
   }
 }
 </script>
 
 <style>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 8px;
 }
 </style>
