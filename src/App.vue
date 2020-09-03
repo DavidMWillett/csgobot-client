@@ -1,18 +1,25 @@
 <template>
-  <div id="app">
-    <ControlPanel/>
-    <OutputScreen/>
+  <div id="app" class="pure-g">
+    <div class="pure-u-1-5">
+      <SettingsPanel />
+      <ControlPanel />
+    </div>
+    <div class="pure-u-4-5" style="height: 100%; display: flex">
+      <OutputScreen />
+    </div>
   </div>
 </template>
 
 <script>
 import ControlPanel from '@/components/ControlPanel';
+import SettingsPanel from '@/components/SettingsPanel';
 import OutputScreen from '@/components/OutputScreen';
 
 export default {
   name: 'App',
   components: {
     ControlPanel,
+    SettingsPanel,
     OutputScreen
   },
   sockets: {
@@ -30,12 +37,9 @@ export default {
 <style>
 html, body {
   height: 100%;
-  margin: 0;
 }
 
 #app {
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
   height: 100%;
   padding: 8px;

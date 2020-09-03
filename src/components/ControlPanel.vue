@@ -1,7 +1,12 @@
 <template>
-  <div>
-    <button v-on:click="start">Start</button>
-    <button v-on:click="stop">Stop</button>
+  <div style="margin-top: 16px">
+    <fieldset>
+      <legend>Controls</legend>
+      <div class="pure-g">
+        <button v-on:click="start" class="pure-button pure-u-1-2" style="background: green">Start</button>
+        <button v-on:click="stop" class="pure-button pure-u-1-2" style="background: red">Stop</button>
+      </div>
+    </fieldset>
   </div>
 </template>
 
@@ -36,5 +41,16 @@ export default {
 </script>
 
 <style scoped>
+div {
+  display: flex;
+}
 
+fieldset {
+  flex: auto;
+}
+
+button {
+  color: white;
+  font-size: 125%;
+}
 </style>

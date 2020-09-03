@@ -55,8 +55,7 @@ export default {
 
 ul {
   flex-grow: 1;
-  margin-top: 8px;
-  margin-bottom: 0;
+  margin: 0 0 0 8px;
   border: 1px solid #000;
   overflow: auto;
   padding: 8px;
