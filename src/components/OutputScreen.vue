@@ -6,7 +6,10 @@
   </ul>
 </template>
 
+
 <script>
+const MAX_OUTPUT_LENGTH = 1000;
+
 export default {
   name: "OutputScreen",
 
@@ -16,27 +19,36 @@ export default {
     };
   },
 
+  methods: {
+    addMessage(message) {
+      this.messages.push(message);
+      if (this.messages.length > MAX_OUTPUT_LENGTH) {
+        this.messages.shift();
+      }
+    }
+  },
+
   sockets: {
     debug(text) {
-      this.messages.push({
+      this.addMessage({
         type: 'debug',
         text: text
       });
     },
     info(text) {
-      this.messages.push({
+      this.addMessage({
         type: 'info',
         text: text
       });
     },
     success(text) {
-      this.messages.push({
+      this.addMessage({
         type: 'success',
         text: text
       });
     },
     errorMsg(text) {
-      this.messages.push({
+      this.addMessage({
         type: 'error-msg',
         text: text
       });
@@ -49,6 +61,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
