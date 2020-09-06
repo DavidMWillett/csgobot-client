@@ -5,7 +5,7 @@
       <ControlPanel />
     </div>
     <div class="pure-u-4-5" style="height: 100%; display: flex">
-      <OutputScreen />
+      <MessageList />
     </div>
   </div>
 </template>
@@ -13,14 +13,14 @@
 <script>
 import ControlPanel from '@/components/ControlPanel';
 import SettingsPanel from '@/components/SettingsPanel';
-import OutputScreen from '@/components/OutputScreen';
+import MessageList from '@/components/MessageList';
 
 export default {
   name: 'App',
   components: {
     ControlPanel,
     SettingsPanel,
-    OutputScreen
+    MessageList
   },
   sockets: {
     connect: function () {

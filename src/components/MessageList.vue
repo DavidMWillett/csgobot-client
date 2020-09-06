@@ -1,17 +1,26 @@
 <template>
   <ul>
-    <li v-for="(message, index) in messages" :key="index" v-bind:class="message.type">
-      {{ message.text }}
-    </li>
+    <MessageItem
+      v-for="message in messages"
+      v-bind:message="message"
+      v-bind:key="message.id"
+    />
   </ul>
 </template>
 
 
 <script>
+import MessageItem from "@/components/MessageItem";
+
 const MAX_OUTPUT_LENGTH = 1000;
+let messageId = 0;
 
 export default {
-  name: "OutputScreen",
+  name: "MessageList",
+
+  components: {
+    MessageItem
+  },
 
   data: function () {
     return {
@@ -21,6 +30,7 @@ export default {
 
   methods: {
     addMessage(message) {
+      message.id = messageId++;
       this.messages.push(message);
       if (this.messages.length > MAX_OUTPUT_LENGTH) {
         this.messages.shift();
@@ -49,7 +59,7 @@ export default {
     },
     errorMsg(text) {
       this.addMessage({
-        type: 'error-msg',
+        type: 'error',
         text: text
       });
     },
@@ -64,7 +74,6 @@ export default {
 
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 ul {
   flex-grow: 1;
@@ -74,23 +83,5 @@ ul {
   padding: 8px;
   list-style: none;
   background-color: #1d3030;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 14px;
-}
-
-li.debug {
-  color: gray;
-}
-
-li.info {
-  color: white;
-}
-
-li.success {
-  color: green;
-}
-
-li.error-msg {
-  color: red;
 }
 </style>
